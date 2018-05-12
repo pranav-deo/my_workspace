@@ -1,0 +1,17 @@
+#Change GPU flag in MakeFile to 0
+
+GPU=0
+
+#Change CUDA path in MakeFile to your path
+#for eg. if your CUDA path is "/usr/local/cuda-8.0/"  do
+
+ifeq ($(GPU), 1) 
+COMMON+= -DGPU -I/usr/local/cuda-8.0/include/
+CFLAGS+= -DGPU
+LDFLAGS+= -L/usr/local/cuda-8.0/lib64 -lcuda -lcudart -lcublas -lcurand
+endif
+
+#If still not able to make,before make do
+
+export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}} 
+
